@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,7 +11,6 @@
     :root {
       --bg: #0a0a0a;
       --surface: #111111;
-      --surface2: #1a1a1a;
       --accent: #00ff88;
       --accent2: #ff3bff;
       --accent3: #3bddff;
@@ -30,13 +29,11 @@
       cursor: none;
     }
 
-    /* Custom cursor */
     .cursor {
       width: 10px; height: 10px;
       background: var(--accent);
       border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       pointer-events: none;
       z-index: 9999;
       transition: transform 0.1s ease;
@@ -46,19 +43,16 @@
       width: 36px; height: 36px;
       border: 1.5px solid var(--accent);
       border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       pointer-events: none;
       z-index: 9998;
       transition: all 0.2s ease;
       mix-blend-mode: difference;
     }
 
-    /* Noise overlay */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 1000;
@@ -70,7 +64,6 @@
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      position: relative;
       overflow: hidden;
     }
 
@@ -88,61 +81,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background: var(--surface);
       position: relative;
       overflow: hidden;
     }
 
     .gif-showcase {
-      width: 340px; height: 340px;
+      width: 360px; height: 360px;
       border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
     }
-
-    .gif-showcase::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
-      opacity: 0.12;
-      z-index: 1;
-    }
-
-    .gif-placeholder {
+    .gif-showcase img {
       width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--surface);
-      gap: 16px;
+      object-fit: cover;
+      display: block;
     }
-
-    .gif-grid-mini {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-      width: 240px;
-    }
-
-    .gif-cell {
-      aspect-ratio: 1;
-      border-radius: 2px;
-      animation: pulse-cell 2s ease-in-out infinite;
-    }
-    .gif-cell:nth-child(1) { background: var(--accent); animation-delay: 0s; }
-    .gif-cell:nth-child(2) { background: var(--accent2); animation-delay: 0.1s; }
-    .gif-cell:nth-child(3) { background: var(--accent3); animation-delay: 0.2s; }
-    .gif-cell:nth-child(4) { background: var(--accent3); animation-delay: 0.3s; }
-    .gif-cell:nth-child(5) { background: var(--accent); animation-delay: 0.4s; }
-    .gif-cell:nth-child(6) { background: var(--accent2); animation-delay: 0.5s; }
-    .gif-cell:nth-child(7) { background: var(--accent2); animation-delay: 0.6s; }
-    .gif-cell:nth-child(8) { background: var(--accent3); animation-delay: 0.7s; }
-    .gif-cell:nth-child(9) { background: var(--accent); animation-delay: 0.8s; }
-
-    @keyframes pulse-cell {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.9); }
+    .gif-showcase-label {
+      position: absolute;
+      bottom: 14px; left: 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.75);
+      padding: 4px 10px;
+      z-index: 2;
     }
 
     .nav {
@@ -152,15 +117,12 @@
       opacity: 0;
       animation: fade-up 0.8s ease forwards 0.2s;
     }
-
     .logo {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 28px;
       letter-spacing: 4px;
-      color: var(--text);
     }
     .logo span { color: var(--accent); }
-
     .nav-tag {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
@@ -175,7 +137,6 @@
       opacity: 0;
       animation: fade-up 0.8s ease forwards 0.5s;
     }
-
     .eyebrow {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
@@ -193,7 +154,6 @@
       background: var(--accent);
       display: block;
     }
-
     .hero-name {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(72px, 8vw, 120px);
@@ -203,7 +163,6 @@
     }
     .hero-name .line2 { color: var(--accent); display: block; }
     .hero-name .line3 { color: transparent; -webkit-text-stroke: 1px var(--text); display: block; }
-
     .hero-desc {
       font-size: 14px;
       line-height: 1.7;
@@ -211,17 +170,11 @@
       max-width: 360px;
       margin-bottom: 40px;
     }
-
-    .hero-stats {
-      display: flex;
-      gap: 32px;
-    }
-
+    .hero-stats { display: flex; gap: 32px; }
     .stat-item { display: flex; flex-direction: column; gap: 4px; }
     .stat-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 36px;
-      color: var(--text);
       line-height: 1;
     }
     .stat-label {
@@ -239,7 +192,6 @@
       opacity: 0;
       animation: fade-up 0.8s ease forwards 0.8s;
     }
-
     .scroll-hint {
       font-family: 'Space Mono', monospace;
       font-size: 9px;
@@ -257,6 +209,31 @@
       background: var(--border);
       display: block;
     }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      padding: 16px 32px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--accent2);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span, .btn-primary-arrow { position: relative; z-index: 1; }
 
     /* ─── MARQUEE ─── */
     .marquee-wrap {
@@ -282,28 +259,15 @@
       align-items: center;
       gap: 48px;
     }
-    .marquee-item .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
     @keyframes marquee {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
-    /* ─── ABOUT ─── */
-    .section {
-      padding: 120px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
+    /* ─── SHARED ─── */
+    .section { padding: 120px 0; border-bottom: 1px solid var(--border); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
     .section-label {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
@@ -315,47 +279,28 @@
       align-items: center;
       gap: 16px;
     }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
+    /* ─── ABOUT ─── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
     }
-
     .about-heading {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 56px;
-      line-height: 1.0;
+      line-height: 1;
       margin-bottom: 24px;
     }
     .about-heading span { color: var(--accent2); }
-
-    .about-text {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #999;
-      margin-bottom: 16px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
+    .about-text { font-size: 15px; line-height: 1.8; color: #999; margin-bottom: 16px; }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
     .skill-tag {
       font-family: 'Space Mono', monospace;
       font-size: 10px;
       letter-spacing: 1px;
-      color: var(--text);
       border: 1px solid var(--border);
       padding: 10px 16px;
       display: flex;
@@ -363,16 +308,10 @@
       gap: 8px;
       transition: all 0.2s;
     }
-    .skill-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .skill-tag .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .skill-tag .sdot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
-    .about-visual {
-      position: relative;
-    }
-
+    /* ─── PROFILE CARD ─── */
     .profile-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -382,38 +321,20 @@
     .profile-card::before {
       content: '';
       position: absolute;
-      top: -1px; left: 32px;
-      right: 32px; height: 3px;
+      top: -1px; left: 32px; right: 32px; height: 3px;
       background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
     }
-
     .profile-avatar {
       width: 80px; height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      color: var(--bg);
+      overflow: hidden;
       margin-bottom: 20px;
+      border: 2px solid var(--border);
     }
-
-    .profile-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
-    }
-
-    .profile-handle {
-      font-family: 'Space Mono', monospace;
-      font-size: 11px;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-
-    .profile-links { display: flex; flex-direction: column; gap: 10px; }
-
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .profile-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 4px; }
+    .profile-handle { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); margin-bottom: 24px; }
+    .profile-links { display: flex; flex-direction: column; }
     .profile-link {
       display: flex;
       align-items: center;
@@ -422,117 +343,76 @@
       font-size: 11px;
       color: var(--muted);
       text-decoration: none;
-      transition: color 0.2s;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
     }
     .profile-link:hover { color: var(--text); }
-    .profile-link .platform-icon {
+    .platform-icon {
       width: 28px; height: 28px;
       border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px;
       flex-shrink: 0;
-      transition: all 0.2s;
+      transition: border-color 0.2s;
     }
-    .profile-link:hover .platform-icon {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .profile-link:hover .platform-icon { border-color: var(--accent); }
+    .platform-icon svg { width: 14px; height: 14px; fill: currentColor; }
 
-    /* ─── WORK / GIF PORTFOLIO ─── */
+    /* ─── WORK GRID ─── */
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-
     .work-item {
       aspect-ratio: 1;
-      background: var(--surface);
       position: relative;
       overflow: hidden;
+      background: var(--surface);
       cursor: none;
     }
     .work-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: unset; min-height: 400px; }
-
-    .work-inner {
+    .work-item img {
+      position: absolute; inset: 0;
       width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
-
-    .work-bg {
-      position: absolute;
-      inset: 0;
-      opacity: 0.15;
-      transition: opacity 0.3s;
-    }
-    .work-item:hover .work-bg { opacity: 0.25; }
-
+    .work-item:hover img { transform: scale(1.05); }
     .work-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 80px;
       color: rgba(255,255,255,0.05);
-      position: absolute;
-      bottom: 16px;
-      right: 24px;
+      position: absolute; bottom: 16px; right: 24px;
+      z-index: 1; pointer-events: none;
     }
-
     .work-label {
-      position: absolute;
-      bottom: 16px;
-      left: 20px;
+      position: absolute; bottom: 16px; left: 20px;
       font-family: 'Space Mono', monospace;
       font-size: 9px;
       color: var(--muted);
       letter-spacing: 2px;
       text-transform: uppercase;
+      z-index: 1;
     }
-
     .work-overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: absolute; inset: 0;
+      background: rgba(10,10,10,0.88);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       gap: 8px;
       opacity: 0;
       transition: opacity 0.25s;
+      z-index: 2;
     }
-    .work-item:hover .work-overlay { opacity: 0.92; }
+    .work-item:hover .work-overlay { opacity: 1; }
+    .work-overlay-tag { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; }
+    .work-overlay-sub { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 2px; }
 
-    .work-overlay-tag {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 3px;
-      color: var(--text);
-    }
-    .work-overlay-sub {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      color: var(--accent);
-      letter-spacing: 2px;
-    }
-
-    /* ─── GIPHY SECTION ─── */
-    .giphy-section {
-      background: var(--surface);
-      padding: 120px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .giphy-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
+    /* ─── GIPHY CTA ─── */
+    .giphy-section { background: var(--surface); padding: 120px 0; border-bottom: 1px solid var(--border); }
+    .giphy-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .giphy-badge {
       display: inline-flex;
       align-items: center;
@@ -545,202 +425,81 @@
       padding: 8px 18px;
       margin-bottom: 24px;
     }
-    .giphy-badge-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--bg);
-      animation: blink 1.2s ease-in-out infinite;
-    }
+    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bg); animation: blink 1.2s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-    .giphy-heading {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 64px;
-      line-height: 0.95;
-      margin-bottom: 28px;
+    .giphy-heading { font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: 0.95; margin-bottom: 28px; }
+    .giphy-heading .ac { color: var(--accent); }
+    .giphy-text { font-size: 14px; line-height: 1.8; color: #888; margin-bottom: 16px; }
+    .giphy-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .giphy-tile { aspect-ratio: 1; overflow: hidden; }
+    .giphy-tile img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      animation: float 3s ease-in-out infinite;
     }
-    .giphy-heading .accent { color: var(--accent); }
-
-    .giphy-text {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #888;
-      margin-bottom: 40px;
-    }
-
-    .giphy-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--accent);
-      color: var(--bg);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 16px;
-      letter-spacing: 3px;
-      padding: 16px 32px;
-      text-decoration: none;
-      transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .giphy-cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--accent2);
-      transform: translateX(-100%);
-      transition: transform 0.3s;
-    }
-    .giphy-cta:hover::before { transform: translateX(0); }
-    .giphy-cta span { position: relative; z-index: 1; }
-    .giphy-cta-arrow { position: relative; z-index: 1; }
-
-    .giphy-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .giphy-tile {
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: 2px;
-      position: relative;
-      overflow: hidden;
-    }
-    .giphy-tile::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .tile-1 { background: linear-gradient(135deg, #00ff8822, #00ff8811); color: var(--accent); animation: float 3s ease-in-out infinite; }
-    .tile-2 { background: linear-gradient(135deg, #ff3bff22, #ff3bff11); color: var(--accent2); animation: float 3s ease-in-out infinite 0.5s; }
-    .tile-3 { background: linear-gradient(135deg, #3bddff22, #3bddff11); color: var(--accent3); animation: float 3s ease-in-out infinite 1s; }
-    .tile-4 { background: linear-gradient(135deg, #ff3bff22, #00ff8811); color: var(--text); animation: float 3s ease-in-out infinite 1.5s; }
-
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+    .giphy-tile:nth-child(2) img { animation-delay: 0.5s; }
+    .giphy-tile:nth-child(3) img { animation-delay: 1s; }
+    .giphy-tile:nth-child(4) img { animation-delay: 1.5s; }
+    @keyframes float { 0%,100%{ transform: translateY(0) scale(1); } 50%{ transform: translateY(-6px) scale(1.02); } }
 
     /* ─── SOCIAL ─── */
     .social-section { padding: 120px 0; }
-
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-top: 60px;
-    }
-
+    .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 60px; }
     .social-card {
       background: var(--surface);
       padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      display: flex; flex-direction: column; gap: 16px;
       text-decoration: none;
       color: var(--text);
-      transition: all 0.25s;
       border: 1px solid transparent;
       position: relative;
+      transition: border-color 0.25s;
     }
     .social-card:hover { border-color: var(--accent); }
     .social-card::before {
       content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       transform: scaleX(0);
       transition: transform 0.3s;
       transform-origin: left;
     }
     .social-card:hover::before { transform: scaleX(1); }
-
-    .social-platform {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .social-platform { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; }
+    .social-icon-wrap {
+      width: 44px; height: 44px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
     }
-
-    .social-icon {
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    .social-handle {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 2px;
-      color: var(--text);
-      transition: color 0.2s;
-    }
+    .social-card:hover .social-icon-wrap { border-color: var(--accent); }
+    .social-icon-wrap svg { width: 20px; height: 20px; fill: var(--muted); transition: fill 0.2s; }
+    .social-card:hover .social-icon-wrap svg { fill: var(--accent); }
+    .social-handle { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 2px; transition: color 0.2s; }
     .social-card:hover .social-handle { color: var(--accent); }
-
-    .social-arrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 16px;
-      color: var(--muted);
-      margin-top: auto;
-      transition: all 0.2s;
-    }
+    .social-url { font-family: 'Space Mono', monospace; font-size: 10px; color: #555; }
+    .social-arrow { font-family: 'Space Mono', monospace; font-size: 16px; color: var(--muted); margin-top: auto; transition: all 0.2s; }
     .social-card:hover .social-arrow { color: var(--accent); transform: translateX(6px); }
 
     /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--border);
       padding: 40px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 4px;
-      color: var(--muted);
-    }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 4px; color: var(--muted); }
     .footer-logo span { color: var(--accent); }
+    .footer-copy { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; }
+    .footer-tag { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted); }
 
-    .footer-copy {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 2px;
-    }
-
-    .footer-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: 1px;
-    }
-
-    /* ─── ANIMATIONS ─── */
+    /* ─── ANIM ─── */
     @keyframes fade-up {
       from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
@@ -757,304 +516,71 @@
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- ─── HERO ─── -->
-  <section class="hero">
-    <div class="hero-left">
-      <nav class="nav">
-        <div class="logo"><span>dero</span>diro</div>
-        <div class="nav-tag">Creator · GIF Artist</div>
-      </nav>
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-left">
+    <nav class="nav">
+      <div class="logo"><span>dero</span>diro</div>
+      <div class="nav-tag">Creator · GIF Artist</div>
+    </nav>
 
-      <div class="hero-content">
-        <div class="eyebrow">Available on Giphy</div>
-        <h1 class="hero-name">
-          DERO
-          <span class="line2">DIRO</span>
-          <span class="line3">CREATES</span>
-        </h1>
-        <p class="hero-desc">GIF creator, motion designer & digital artist. Bringing moments to life — one loop at a time.</p>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-num">∞</span>
-            <span class="stat-label">Loops</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">GIF</span>
-            <span class="stat-label">Format</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">1</span>
-            <span class="stat-label">Artist</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-bottom">
-        <a href="https://giphy.com/derodiro" class="giphy-cta" target="_blank">
-          <span>VIEW ON GIPHY</span>
-          <span class="giphy-cta-arrow">→</span>
-        </a>
-        <div class="scroll-hint">Scroll Down</div>
+    <div class="hero-content">
+      <div class="eyebrow">Available on Giphy</div>
+      <h1 class="hero-name">
+        DERO
+        <span class="line2">DIRO</span>
+        <span class="line3">CREATES</span>
+      </h1>
+      <p class="hero-desc">GIF creator, motion designer & digital artist. Bringing moments to life — one loop at a time.</p>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num">∞</span><span class="stat-label">Loops</span></div>
+        <div class="stat-item"><span class="stat-num">GIF</span><span class="stat-label">Format</span></div>
+        <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Artist</span></div>
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="gif-showcase">
-        <div class="gif-placeholder">
-          <div class="gif-grid-mini">
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-            <div class="gif-cell"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── MARQUEE ─── -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <div class="marquee-item">DERODIRO <span class="dot"></span></div>
-      <div class="marquee-item">GIF CREATOR <span class="dot"></span></div>
-      <div class="marquee-item">MOTION DESIGN <span class="dot"></span></div>
-      <div class="marquee-item">GIPHY ARTIST <span class="dot"></span></div>
-      <div class="marquee-item">DIGITAL ART <span class="dot"></span></div>
-      <div class="marquee-item">DERODIRO <span class="dot"></span></div>
-      <div class="marquee-item">GIF CREATOR <span class="dot"></span></div>
-      <div class="marquee-item">MOTION DESIGN <span class="dot"></span></div>
-      <div class="marquee-item">GIPHY ARTIST <span class="dot"></span></div>
-      <div class="marquee-item">DIGITAL ART <span class="dot"></span></div>
+    <div class="hero-bottom">
+      <a href="https://giphy.com/derodiro" class="btn-primary" target="_blank">
+        <span>VIEW ON GIPHY</span>
+        <span class="btn-primary-arrow">→</span>
+      </a>
+      <div class="scroll-hint">Scroll Down</div>
     </div>
   </div>
 
-  <!-- ─── ABOUT ─── -->
-  <section class="section">
-    <div class="container">
-      <div class="section-label">01 — About</div>
-      <div class="about-grid reveal">
-        <div>
-          <h2 class="about-heading">WHO IS <span>DERODIRO</span>?</h2>
-          <p class="about-text">A digital content creator specializing in GIF art and motion design. Each piece is designed to move, resonate, and persist in an infinite loop..</p>
-          <p class="about-text">From cute stickers to expressive animations, every GIF created carries a unique energy that you can find on Giphy..</p>
-          <div class="skills-grid">
-            <div class="skill-tag"><span class="dot"></span>GIF Animation</div>
-            <div class="skill-tag"><span class="dot"></span>Motion Design</div>
-            <div class="skill-tag"><span class="dot"></span>Digital Art</div>
-            <div class="skill-tag"><span class="dot"></span>Sticker Design</div>
-            <div class="skill-tag"><span class="dot"></span>Loop Animation</div>
-            <div class="skill-tag"><span class="dot"></span>Visual Story</div>
-          </div>
-        </div>
-        <div class="about-visual">
-          <div class="profile-card">
-            <div class="profile-avatar">DR</div>
-            <div class="profile-name">derodiro</div>
-            <div class="profile-handle">@derodiro</div>
-            <div class="profile-links">
-              <a href="https://giphy.com/derodiro" class="profile-link" target="_blank">
-                <div class="platform-icon">G</div>
-                giphy.com/derodiro
-              </a>
-              <a href="https://instagram.com/derodiro" class="profile-link" target="_blank">
-                <div class="platform-icon">IG</div>
-                instagram.com/derodiro
-              </a>
-              <a href="https://tiktok.com/@derodiro" class="profile-link" target="_blank">
-                <div class="platform-icon">TT</div>
-                tiktok.com/@derodiro
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="hero-right">
+    <div class="gif-showcase">
+      <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyeHVzM3p2c2thbXV6d3hiN3FuMDFhcmtmN2p5amY2ZnJpNzduMTVjcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZJxaL46Kt8nPMZa9jR/giphy.gif" alt="Featured GIF by derodiro" />
+      <div class="gif-showcase-label">Featured Work</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─── WORK ─── -->
-  <section style="border-bottom: 1px solid var(--border);">
-    <div class="container" style="padding-top: 80px; padding-bottom: 0;">
-      <div class="section-label reveal">02 — Portfolio</div>
-    </div>
-    <div class="work-grid reveal">
-      <div class="work-item">
-        <div class="work-inner">
-          <div class="work-bg" style="background: linear-gradient(135deg, #00ff88, #3bddff);"></div>
-          <div style="text-align:center; z-index:1;">
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;color:#00ff88;">FEATURED GIF</div>
-            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#666;margin-top:8px;">Upload your best work here</div>
-          </div>
-          <div class="work-num">01</div>
-          <div class="work-label">Featured</div>
-        </div>
-        <div class="work-overlay">
-          <div class="work-overlay-tag">FEATURED WORK</div>
-          <div class="work-overlay-sub">View on Giphy →</div>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-inner">
-          <div class="work-bg" style="background: linear-gradient(135deg, #ff3bff, #3bddff);"></div>
-          <div class="work-num">02</div>
-          <div class="work-label">Stickers</div>
-        </div>
-        <div class="work-overlay">
-          <div class="work-overlay-tag">STICKER PACK</div>
-          <div class="work-overlay-sub">Giphy Stickers →</div>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-inner">
-          <div class="work-bg" style="background: linear-gradient(135deg, #ff3bff, #ff8800);"></div>
-          <div class="work-num">03</div>
-          <div class="work-label">Expressions</div>
-        </div>
-        <div class="work-overlay">
-          <div class="work-overlay-tag">EXPRESSIONS</div>
-          <div class="work-overlay-sub">Explore →</div>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-inner">
-          <div class="work-bg" style="background: linear-gradient(135deg, #3bddff, #0055ff);"></div>
-          <div class="work-num">04</div>
-          <div class="work-label">Loops</div>
-        </div>
-        <div class="work-overlay">
-          <div class="work-overlay-tag">LOOP ART</div>
-          <div class="work-overlay-sub">See More →</div>
-        </div>
-      </div>
-      <div class="work-item">
-        <div class="work-inner">
-          <div class="work-bg" style="background: linear-gradient(135deg, #00ff88, #ff3bff);"></div>
-          <div class="work-num">05</div>
-          <div class="work-label">Abstract</div>
-        </div>
-        <div class="work-overlay">
-          <div class="work-overlay-tag">ABSTRACT</div>
-          <div class="work-overlay-sub">View →</div>
-        </div>
-      </div>
-    </div>
-    <div style="height:80px;"></div>
-  </section>
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">DERODIRO <span class="dot"></span></div>
+    <div class="marquee-item">GIF CREATOR <span class="dot"></span></div>
+    <div class="marquee-item">MOTION DESIGN <span class="dot"></span></div>
+    <div class="marquee-item">GIPHY ARTIST <span class="dot"></span></div>
+    <div class="marquee-item">DIGITAL ART <span class="dot"></span></div>
+    <div class="marquee-item">DERODIRO <span class="dot"></span></div>
+    <div class="marquee-item">GIF CREATOR <span class="dot"></span></div>
+    <div class="marquee-item">MOTION DESIGN <span class="dot"></span></div>
+    <div class="marquee-item">GIPHY ARTIST <span class="dot"></span></div>
+    <div class="marquee-item">DIGITAL ART <span class="dot"></span></div>
+  </div>
+</div>
 
-  <!-- ─── GIPHY CTA ─── -->
-  <section class="giphy-section">
-    <div class="container">
-      <div class="giphy-inner reveal">
-        <div>
-          <div class="giphy-badge"><span class="giphy-badge-dot"></span>NOW LIVE ON GIPHY</div>
-          <h2 class="giphy-heading">REGISTER AS <span class="accent">GIPHY CREATOR</span></h2>
-          <p class="giphy-text">
-            Find all of Derodiro's GIFs right on Giphy. From expressive stickers to hilarious memes—they're all free to use on all your favorite platforms.
-          </p>
-          <p class="giphy-text">
-            Support local creators by using GIFs from derodiro in your conversations, stories, and content!
-          </p>
-          <a href="https://giphy.com/derodiro" class="giphy-cta" target="_blank">
-            <span>SEE ON GIPHY</span>
-            <span class="giphy-cta-arrow">→</span>
-          </a>
-        </div>
-        <div class="giphy-visual">
-          <div class="giphy-tile tile-1">GIF</div>
-          <div class="giphy-tile tile-2">ART</div>
-          <div class="giphy-tile tile-3">LOOP</div>
-          <div class="giphy-tile tile-4">∞</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SOCIAL ─── -->
-  <section class="social-section">
-    <div class="container">
-      <div class="section-label reveal">03 — Find Me</div>
-      <div class="social-grid reveal">
-        <a href="https://giphy.com/derodiro" class="social-card" target="_blank">
-          <div class="social-platform">GIF Platform</div>
-          <div class="social-icon">🎬</div>
-          <div class="social-handle">@derodiro</div>
-          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#555;">giphy.com/derodiro</div>
-          <div class="social-arrow">→</div>
-        </a>
-        <a href="https://instagram.com/derodiro" class="social-card" target="_blank">
-          <div class="social-platform">Instagram</div>
-          <div class="social-icon">📸</div>
-          <div class="social-handle">@derodiro</div>
-          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#555;">instagram.com/derodiro</div>
-          <div class="social-arrow">→</div>
-        </a>
-        <a href="https://tiktok.com/@derodiro" class="social-card" target="_blank">
-          <div class="social-platform">TikTok</div>
-          <div class="social-icon">🎵</div>
-          <div class="social-handle">@derodiro</div>
-          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#555;">tiktok.com/@derodiro</div>
-          <div class="social-arrow">→</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-logo"><span>dero</span>diro</div>
-    <div class="footer-copy">© 2026 derodiro — All rights reserved</div>
-    <div class="footer-tag">GIF Creator · Motion Artist</div>
-  </footer>
-
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx - 5 + 'px';
-      cursor.style.top = my - 5 + 'px';
-    });
-
-    (function animRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx - 18 + 'px';
-      ring.style.top = ry - 18 + 'px';
-      requestAnimationFrame(animRing);
-    })();
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(2)';
-        ring.style.transform = 'scale(1.5)';
-        ring.style.borderColor = 'var(--accent2)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(1)';
-        ring.style.transform = 'scale(1)';
-        ring.style.borderColor = 'var(--accent)';
-      });
-    });
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
-</body>
-</html>
+<!-- ─── ABOUT ─── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">01 — About</div>
+    <div class="about-grid reveal">
+      <div>
+        <h2 class="about-heading">WHO IS <span>DERODIRO</span>?</h2>
+        <p class="about-text">A digital content creator focused on GIF art and motion design. Every piece is crafted to move, resonate, and live on in an endless loop.</p>
+        <p class="about-text">From expressi
